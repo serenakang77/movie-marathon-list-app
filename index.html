@@ -5,47 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Marathon List App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
     <header>
-        <h1>Movie Marathon List App</h1>
+        <div class="wrapper">
+            <h1>Movie Marathon List App</h1>
+        </div>
     </header>
     <main>
-        <fieldset>
-            <input type="text" class="search" placeholder="Search movie">
-            <button type="submit" class="search-button">Submit</button>
-        </fieldset>
-        <section class="results">
-            <h2>Results</h2>
-            <ul>
-                <li>
-                    <img class="movie-poster" src="./assets/movie-poster.jpg" alt="Sample movie poster">
-                    <p class="movie-title">Movie A</p>
-                </li>
-                <li>
-                    <img class="movie-poster" src="./assets/movie-poster.jpg" alt="Sample movie poster">
-                    <p class="movie-title">Movie B</p>
-                </li>
-                <li>
-                    <img class="movie-poster" src="./assets/movie-poster.jpg" alt="Sample movie poster">
-                    <p class="movie-title">Movie C</p>
-                </li>
-            </ul>
-        </section>
-        <section class="movie-list">
-            <h2>Movie List</h2>
-            <ul>
-                <li>Movie 1</li>
-                <li>Movie 2</li>
-                <li>Movie 3</li>
-                <li>Movie 4</li>
-                <li>Movie 5</li>
-            </ul>
-        </section>
+        <div class="wrapper">
+            <section class="search-bar">
+                <fieldset>
+                    <input type="text" class="search" placeholder="Search movies by keyword">
+                    <button type="submit" class="search-button">Submit</button>
+                </fieldset>
+            </section>
+            <div class="main-container">
+                <section class="results">
+                    <h2>Results</h2>
+                    <ul>
+                        <li>
+                            <img class="movie-poster" src="./assets/movie-poster.jpg" alt="Sample movie poster">
+                            <p class="movie-title">Movie A</p>
+                        </li>
+                        <li>
+                            <img class="movie-poster" src="./assets/movie-poster.jpg" alt="Sample movie poster">
+                            <p class="movie-title">Movie B</p>
+                        </li>
+                        <li>
+                            <img class="movie-poster" src="./assets/movie-poster.jpg" alt="Sample movie poster">
+                            <p class="movie-title">Movie C</p>
+                        </li>
+                    </ul>
+                </section>
+                <section class="movie-list">
+                    <h2>Movie List</h2>
+                    <ul>
+                        <li><input type="checkbox">Movie 1</li>
+                        <li><input type="checkbox">Movie 2</li>
+                        <li><input type="checkbox">Movie 3</li>
+                        <li><input type="checkbox">Movie 4</li>
+                        <li><input type="checkbox">Movie 5</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
     </main>
     <footer>
-        <p>Created by Dana Teagle and Serena Kang at Juno College.</p>
+        <div class="wrapper">
+            <p>Created by Dana Teagle and Serena Kang at Juno College.</p>
+        </div>
     </footer>
     <script src="./script.js"></script>
 </body>
