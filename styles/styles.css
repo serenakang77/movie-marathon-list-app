@@ -246,6 +246,7 @@ body {
 header .wrapper {
   width: 60%;
   background-color: #FAF9F6;
+  border: solid #000 2px;
   border-radius: 25px;
   margin-top: 25px;
   padding-top: 5px;
@@ -285,8 +286,9 @@ main .main-container {
 }
 main .main-container .results {
   background-color: #FAF9F6;
-  width: 70%;
+  width: 60%;
   border-radius: 25px;
+  border: solid #000 2px;
 }
 main .main-container .results ul {
   list-style: none;
@@ -301,14 +303,20 @@ main .main-container .results ul li {
 main .main-container .results ul li .movie-poster {
   width: 100%;
 }
+main .main-container .results ul li .fa-plus-circle, main .main-container .results ul li .fa-minus-circle {
+  font-size: 30px;
+  padding: 0px 10px;
+}
 main .main-container .movie-list {
   background-color: #FAF9F6;
-  width: 20%;
+  width: 30%;
   border-radius: 25px;
+  border: solid #000 2px;
 }
 main .main-container .movie-list ul {
   list-style-type: none;
-  padding: 0;
+  padding: 0px 30px;
+  text-align: left;
 }
 main .main-container .movie-list ul li {
   padding: 5px;
