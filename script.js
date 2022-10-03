@@ -68,6 +68,8 @@ movieMarathonApp.displayMovie = (apiResponse) => {
     }
 }
 
+
+
 // Create init method on movieMarathonApp
 movieMarathonApp.init = () => {
     // Make an onSubmit event listener on searchBarElement
