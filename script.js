@@ -68,7 +68,31 @@ movieMarathonApp.displayMovie = (apiResponse) => {
     }
 }
 
+// list and results section variables
+const list = document.querySelector(`.movie-list`)
+const results = document.querySelector(`.results`)
 
+// list and results button variables
+const resultsBtn = document.querySelector(`.results-btn`)
+const listBtn = document.querySelector(`.list-btn`)
+
+// show results and hide lists function
+function showResults() {
+    results.style.display = `block`;
+    list.style.display = `none`;
+}
+
+// show list and hide results function
+function showList() {
+    list.style.display = `block`;
+    results.style.display = `none`;
+}
+
+// show both list and results function
+function showListAndResults() {
+    results.style.display = `block`;
+    list.style.display = `block`;
+}
 
 // Create init method on movieMarathonApp
 movieMarathonApp.init = () => {
@@ -81,6 +105,20 @@ movieMarathonApp.init = () => {
         movieMarathonApp.searchMovie(movieMarathonApp.userMovie);
         movieMarathonApp.searchBarElement.value="";
     })
+    // on results button click, show results
+    resultsBtn.addEventListener(`click`, showResults);
+
+    // on list button click, show list
+    listBtn.addEventListener(`click`, showList);
+
+    // when window is bigger than mobile, show both list and results
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 595){
+            showListAndResults();
+        } else {
+            showResults();
+        }
+    });
 }
 
 // Call movieMarathonApp.init
@@ -99,5 +137,3 @@ movieMarathonApp.init();
 
         // call getMovie method (forEach item in searchMovie array)
         // call toggleList method to allow for adding and removing movies from the list
-    
-    // DANA WILL WORK ON MOBILE FUNCTION(Menu Bar to go to movie list...)

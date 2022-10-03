@@ -21,7 +21,7 @@ body {
 
 header {
     .wrapper {
-        width: 60%;
+        width: 500px;
         background-color: $off-white;
         border: solid #000 2px;
         border-radius: 25px;
@@ -32,6 +32,9 @@ header {
     h1 {
         font-size: 50px;
     }
+    .mobile-nav {
+        display: none;
+    }
 }
 
 // main styles
@@ -40,7 +43,7 @@ main {
     .search-bar {
         margin: auto;
         padding: 20px;
-        width: 50%;
+        width: 500px;
         fieldset {
             border: none;
             display: flex;
@@ -76,8 +79,7 @@ main {
                 display: flex;
     
                 li {
-                    padding-left: 5%;
-                    padding-right: 5%;
+                    padding: 5%;
     
                     .movie-poster {
                         width: 100%;
@@ -115,4 +117,54 @@ main {
 footer {
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+// mobile design
+@media only screen and (max-width: 595px) {
+    header {
+        .wrapper {
+            width: 90%;
+        }
+        .mobile-nav {
+            display: initial;
+            ul {
+                background-color: #000;
+                list-style: none;
+                display: flex;
+                justify-content: space-evenly;
+                padding: 0;
+
+                li {
+                    color: $off-white;
+                    padding: 10px;
+
+                    &:hover {
+                        background-color: $cyan;
+                        color: #000;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    main {
+        .search-bar {
+                width: 100%;
+                padding: 20px 0px;
+            }
+        .main-container {
+            flex-direction: column;
+            .results, .movie-list {
+                    width: 100%;
+                }
+            .results {
+                ul {
+                    flex-direction: column;
+                }
+            }
+            .movie-list {
+                display: none;
+            }
+        }
+    }
 }
