@@ -13,15 +13,15 @@ movieMarathonApp.options = {
 movieMarathonApp.url = "https://movie-database-alternative.p.rapidapi.com/"
 
 // Create searchMovie method that makes an API call to the Movie Database for the three (or more) most popular movies(using filter function) from the results
-movieMarathonApp.searchMovie = (parameter) => {
+movieMarathonApp.searchMovie = (userInput) => {
     const movieMarathonAppUrl = new URL(movieMarathonApp.url);
     movieMarathonAppUrl.search = new URLSearchParams({
-        s:parameter
+        s:userInput
     })
     
     fetch(movieMarathonAppUrl, movieMarathonApp.options)
     .then(response => response.json())
-    .then(response => movieMarathonApp.displayMovie(response))
+    .then(response => movieMarathonApp.displayMovie(response.Search))
     .catch(err => console.error(err));
 } 
 
@@ -58,17 +58,63 @@ movieMarathonApp.displayMovie = (apiResponse) => {
     for(let i = 0; i<3; i++){
         const liElement = document.createElement("li");
         liElement.innerHTML = `
-        <img class="movie-poster" src="${apiResponse.Search[i].Poster}" alt="${apiResponse.Search[i].Title}">
-        <p class="movie-title">${apiResponse.Search[i].Title}</p>
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+        <img class="movie-poster" src="${apiResponse[i].Poster}" alt="${apiResponse[i].Title}">
+        <p class="movie-title">${apiResponse[i].Title}</p>
+        <i class="fa fa-plus-circle" id="add${apiResponse[i].Title}" aria-hidden="true"></i>
+        <i class="fa fa-minus-circle" id="remove${apiResponse[i].Title}" aria-hidden="true"></i>
         `
         ulElement.append(liElement);
+        movieMarathonApp.toggleList(apiResponse[i].Title);
         // !! (DANA WILL WORK ON THIS) *STRETCH GOAL* - Create an event listener on the arrow buttons that carousels through more movies when the user clicks it(NEED TO WORK)
     }
 }
 
+//SERENA WILL WORK ON TOGGLE
+    // Create toggleList method that adds and removes movie titles to the list when the user clicks + or -
 
+        // *STRETCH GOAL* - filter movie list titles by alphabetical order, year, etc.
+
+        // *STRETCH GOAL* - click on movie for more information
+
+        // call getMovie method (forEach item in searchMovie array)
+        // call toggleList method to allow for adding and removing movies from the list
+movieMarathonApp.toggleList = (res) => {
+    const plusButtonElement = document.getElementById(`add${res}`)
+    plusButtonElement.addEventListener("click", () => {
+        const movieListulElement = document.querySelector(".movie-list ul")
+        const movieListliElement = document.createElement("li");
+        movieListliElement.innerHTML = `
+        <input type="checkbox">${res}
+        `
+        movieListulElement.append(movieListliElement)
+    })
+}
+
+// list and results section variables
+const list = document.querySelector(`.movie-list`)
+const results = document.querySelector(`.results`)
+
+// list and results button variables
+const resultsBtn = document.querySelector(`.results-btn`)
+const listBtn = document.querySelector(`.list-btn`)
+
+// show results and hide lists function
+function showResults() {
+    results.style.display = `block`;
+    list.style.display = `none`;
+}
+
+// show list and hide results function
+function showList() {
+    list.style.display = `block`;
+    results.style.display = `none`;
+}
+
+// show both list and results function
+function showListAndResults() {
+    results.style.display = `block`;
+    list.style.display = `block`;
+}
 
 // Create init method on movieMarathonApp
 movieMarathonApp.init = () => {
@@ -81,6 +127,20 @@ movieMarathonApp.init = () => {
         movieMarathonApp.searchMovie(movieMarathonApp.userMovie);
         movieMarathonApp.searchBarElement.value="";
     })
+    // on results button click, show results
+    resultsBtn.addEventListener(`click`, showResults);
+
+    // on list button click, show list
+    listBtn.addEventListener(`click`, showList);
+
+    // when window is bigger than mobile, show both list and results
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 595){
+            showListAndResults();
+        } else {
+            showResults();
+        }
+    });
 }
 
 // Call movieMarathonApp.init
@@ -99,5 +159,3 @@ movieMarathonApp.init();
 
         // call getMovie method (forEach item in searchMovie array)
         // call toggleList method to allow for adding and removing movies from the list
-    
-    // DANA WILL WORK ON MOBILE FUNCTION(Menu Bar to go to movie list...)
