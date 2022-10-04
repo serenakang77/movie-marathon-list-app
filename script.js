@@ -181,6 +181,7 @@ function lengthCheck(string) {
 
 // Create init method on movieMarathonApp
 movieMarathonApp.init = () => {
+    movieMarathonApp.searchMovie(`avengers`);
     // Make an onSubmit event listener on searchBarElement
     movieMarathonApp.searchBarSubmitButton.addEventListener("click", () => {
         // Set searchBarElement variable to get the userQuery
