@@ -68,6 +68,7 @@ movieMarathonApp.displayMovie = (apiResponse) => {
     }
 }
 
+<<<<<<<<< Temporary merge branch 1
 // list and results section variables
 const list = document.querySelector(`.movie-list`)
 const results = document.querySelector(`.results`)
