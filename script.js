@@ -187,6 +187,7 @@ movieMarathonApp.init = () => {
         movieMarathonApp.searchBarElement = document.querySelector(".search");
 
         movieMarathonApp.userMovie = movieMarathonApp.searchBarElement.value;
+        document.querySelector(`h2`).innerHTML = `Results for '${movieMarathonApp.userMovie}'`;
         movieMarathonApp.searchMovie(movieMarathonApp.userMovie);
         movieMarathonApp.searchBarElement.value="";
     })
