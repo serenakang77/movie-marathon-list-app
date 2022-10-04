@@ -370,6 +370,8 @@ main .main-container .movie-list ul li .movie-list-item p {
 }
 main .main-container .movie-list ul li i {
   padding-left: 5px;
+  cursor: pointer;
+  align-self: center;
 }
 
 footer {

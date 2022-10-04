@@ -75,6 +75,7 @@ movieMarathonApp.searchBarSubmitButton = document.querySelector(".search-button"
 // Create appendMovieInformation method that adds the li element and append it to ul element
 movieMarathonApp.appendMovieInformation = (apiResponse) => {
     const liElement = document.createElement("li");
+    const movieTitle = lengthCheck(apiResponse.Title);
     liElement.innerHTML = `
     <div class="poster-container">
         <img class="movie-poster" src="${apiResponse.Poster}" alt="Poster Picture is not available">
@@ -83,7 +84,7 @@ movieMarathonApp.appendMovieInformation = (apiResponse) => {
             <i class="fa fa-plus-circle" id="add${apiResponse.Title}" aria-hidden="true"></i>
         </div>
     </div>
-    <p class="${apiResponse.Title}">${apiResponse.Title} (${apiResponse.Year})</p>
+    <p class="${movieTitle}">${movieTitle}<br>(${apiResponse.Year})</p>
     <button class="read-more">Read More</button>
     `
     // <i class="fa fa-minus-circle" id="remove${apiResponse.Title}" aria-hidden="true"></i>
@@ -167,6 +168,15 @@ function showList() {
 function showListAndResults() {
     results.style.display = `block`;
     list.style.display = `block`;
+}
+
+// string length check function
+function lengthCheck(string) {
+    if (string.length > 16) {
+        return string.substring(0, 15) + "...";
+    } else {
+        return string;
+    }
 }
 
 // Create init method on movieMarathonApp
