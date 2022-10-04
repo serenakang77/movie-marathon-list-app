@@ -13,32 +13,54 @@ movieMarathonApp.options = {
 movieMarathonApp.url = "https://movie-database-alternative.p.rapidapi.com/"
 
 // Create searchMovie method that makes an API call to the Movie Database for the three (or more) most popular movies(using filter function) from the results
-movieMarathonApp.searchMovie = (parameter) => {
+movieMarathonApp.searchMovie = (userInput) => {
     const movieMarathonAppUrl = new URL(movieMarathonApp.url);
     movieMarathonAppUrl.search = new URLSearchParams({
-        s:parameter
+        s:userInput
     })
     
     fetch(movieMarathonAppUrl, movieMarathonApp.options)
-    .then(response => response.json())
-    .then(response => movieMarathonApp.displayMovie(response))
-    .catch(err => console.error(err));
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }else{
+            throw new Error(response.statusText)
+        }
+    })
+    .then(response => {
+        const movieList = response.Search
+        movieList.forEach((movie) => {
+            movieMarathonApp.getMovie(movie)
+        })
+        movieMarathonApp.displayMovie(response.Search)
+    })
+    .catch(err => {
+        console.log(err.message);
+        if(err.message === "movieList is undefined"){
+            alert("There are no results available, please search different keywords!")
+        }else {
+            alert("API call is not working, please try it again later")
+        }
+    })
 } 
 
 // Create getMovie method that takes the id of the movies that user searched and makes an API call for that movie's information (by feeding in the ID), and creates an object with that information
-movieMarathonApp.getMovie = () => {
-
-    const movieMarathonAppUrlById = new URL(movieMarathonApp.url);
-    const userInputById = "tt4154664"
-    
-    movieMarathonAppUrlById.search = new URLSearchParams({
-        r: "json",
-        i: userInputById
-    })
-    fetch(movieMarathonAppUrlById, movieMarathonApp.options1)
-    .then(response => response.json())
-    .then(response => movieMarathonApp.api2 = response)
-    .catch(err => console.error(err));
+movieMarathonApp.getMovie = (movie) => {
+    if(movie){
+        const movieMarathonAppUrlById = new URL(movieMarathonApp.url);
+        
+        movieMarathonAppUrlById.search = new URLSearchParams({
+            r: "json",
+            i: movie.imdbID
+        })
+        fetch(movieMarathonAppUrlById, movieMarathonApp.options1)
+        .then(response => response.json())
+        .then(response => {
+            response
+            // console.log(response)
+        })
+        .catch(err => console.error(err));
+    }
 }
 movieMarathonApp.options1 = {
     method: 'GET',
@@ -50,22 +72,75 @@ movieMarathonApp.options1 = {
 
 movieMarathonApp.searchBarSubmitButton = document.querySelector(".search-button");
 
+// Create appendMovieInformation method that adds the li element and append it to ul element
+movieMarathonApp.appendMovieInformation = (apiResponse) => {
+    const liElement = document.createElement("li");
+    liElement.innerHTML = `
+    <div class="poster-container">
+        <img class="movie-poster" src="${apiResponse.Poster}" alt="Poster Picture is not available">
+        <div class="add-button">
+            <p>Add to List</p>
+            <i class="fa fa-plus-circle" id="add${apiResponse.Title}" aria-hidden="true"></i>
+        </div>
+    </div>
+    <p class="${apiResponse.Title}">${apiResponse.Title} (${apiResponse.Year})</p>
+    <button class="read-more">Read More</button>
+    `
+    // <i class="fa fa-minus-circle" id="remove${apiResponse.Title}" aria-hidden="true"></i>
+    movieMarathonApp.ulElement.append(liElement);
+    movieMarathonApp.toggleList(apiResponse.Title);
+}
+
 // Create displayMovies method that manipulates the DOM to add movie images and information
 movieMarathonApp.displayMovie = (apiResponse) => {
     // !! (SERENA WILL WORK ON THIS) Handle any errors from searchMovie before displaying(NEED TO WORK)
-    const ulElement = document.querySelector(".results ul")
-    ulElement.innerHTML = "";
-    for(let i = 0; i<3; i++){
-        const liElement = document.createElement("li");
-        liElement.innerHTML = `
-        <img class="movie-poster" src="${apiResponse.Search[i].Poster}" alt="${apiResponse.Search[i].Title}">
-        <p class="movie-title">${apiResponse.Search[i].Title}</p>
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        <i class="fa fa-minus-circle" aria-hidden="true"></i>
-        `
-        ulElement.append(liElement);
-        // !! (DANA WILL WORK ON THIS) *STRETCH GOAL* - Create an event listener on the arrow buttons that carousels through more movies when the user clicks it(NEED TO WORK)
+    console.log(apiResponse);
+    movieMarathonApp.ulElement = document.querySelector(".results ul")
+    movieMarathonApp.ulElement.innerHTML = "";
+    if(apiResponse.length <3){
+        for(let i = 0; i<apiResponse.length; i++){
+            movieMarathonApp.appendMovieInformation(apiResponse[i])
+        }
+    }else{
+        for(let i = 0; i<3; i++){
+            movieMarathonApp.appendMovieInformation(apiResponse[i])
+            // !! (DANA WILL WORK ON THIS) *STRETCH GOAL* - Create an event listener on the arrow buttons that carousels through more movies when the user clicks it(NEED TO WORK)
+        }
     }
+}
+//SERENA WILL WORK ON TOGGLE
+
+// *STRETCH GOAL* - filter movie list titles by alphabetical order, year, etc.
+
+// *STRETCH GOAL* - click on movie for more information
+
+// call getMovie method (forEach item in searchMovie array)
+
+// Create toggleList method that adds and removes movie titles to the list when the user clicks + or -
+movieMarathonApp.toggleList = (res) => {
+    const plusButtonElement = document.getElementById(`add${res}`)
+    plusButtonElement.addEventListener("click", () => {
+        movieMarathonApp.movieListulElement = document.querySelector(".movie-list ul")
+        movieMarathonApp.movieListliElement = document.createElement("li");
+        movieMarathonApp.movieListliElement.setAttribute("id", res)
+        // if()
+        movieMarathonApp.movieListliElement.innerHTML = `
+        <span class="movie-list-item"><input type="checkbox"><p>${res}</p></span>
+        <i class="fa fa-minus-circle" aria-hidden="true" id="removeButton${res}"></i>
+        `
+        movieMarathonApp.movieListulElement.append(movieMarathonApp.movieListliElement)
+        movieMarathonApp.remove(res)
+    })
+}
+
+movieMarathonApp.remove = (res) => {
+    const minusButtonElement = document.getElementById(`removeButton${res}`)
+    // const minusButtonElement = document.querySelectorAll(".fa-minus-circle")
+    console.log(minusButtonElement);
+    minusButtonElement.addEventListener("click", () => {
+        const selectedMovieToRemove = document.getElementById(res)
+        movieMarathonApp.movieListulElement.removeChild(selectedMovieToRemove)
+    })
 }
 
 // list and results section variables

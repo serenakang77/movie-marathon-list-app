@@ -300,14 +300,47 @@ main .main-container .results ul {
   display: flex;
 }
 main .main-container .results ul li {
-  padding: 5%;
+  margin: 5%;
+  width: 33%;
 }
-main .main-container .results ul li .movie-poster {
+main .main-container .results ul li .poster-container {
+  position: relative;
+}
+main .main-container .results ul li .poster-container .movie-poster, main .main-container .results ul li .poster-container .add-button {
   width: 100%;
+  height: auto;
+  aspect-ratio: 2.75/4;
 }
-main .main-container .results ul li .fa-plus-circle, main .main-container .results ul li .fa-minus-circle {
-  font-size: 30px;
-  padding: 0px 10px;
+main .main-container .results ul li .poster-container .movie-poster {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: solid #000 2px;
+}
+main .main-container .results ul li .poster-container .add-button {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+main .main-container .results ul li .poster-container .add-button p {
+  padding-top: 30%;
+  font-size: 15px;
+}
+main .main-container .results ul li .poster-container .add-button i {
+  color: #000;
+  font-size: 50px;
+}
+main .main-container .results ul li .poster-container:hover .movie-poster {
+  opacity: 30%;
+}
+main .main-container .results ul li .poster-container:hover .add-button {
+  display: block;
+  cursor: pointer;
+}
+main .main-container .results ul li .read-more {
+  border: solid #000 2px;
+  width: 100%;
+  padding: 5px;
 }
 main .main-container .movie-list {
   background-color: #FAF9F6;
@@ -321,10 +354,22 @@ main .main-container .movie-list ul {
   text-align: left;
 }
 main .main-container .movie-list ul li {
+  font-size: 20px;
   padding: 5px;
+  display: flex;
+  justify-content: space-between;
 }
-main .main-container .movie-list ul li input {
-  margin-right: 5px;
+main .main-container .movie-list ul li .movie-list-item {
+  display: flex;
+}
+main .main-container .movie-list ul li .movie-list-item input {
+  margin: 0px 10px;
+}
+main .main-container .movie-list ul li .movie-list-item p {
+  margin: 0;
+}
+main .main-container .movie-list ul li i {
+  padding-left: 5px;
 }
 
 footer {
@@ -368,7 +413,10 @@ footer {
   main .main-container .results ul {
     flex-direction: column;
   }
+  main .main-container .results ul li {
+    width: 100%;
+  }
   main .main-container .movie-list {
     display: none;
   }
-}/*# sourceMappingURL=styles.css.map */
+}

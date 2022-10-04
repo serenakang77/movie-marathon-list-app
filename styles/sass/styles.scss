@@ -79,14 +79,51 @@ main {
                 display: flex;
     
                 li {
-                    padding: 5%;
+                    margin: 5%;
+                    width: 33%;
     
-                    .movie-poster {
-                        width: 100%;
+                    .poster-container {
+                        position: relative;
+
+                        .movie-poster, .add-button {
+                            width: 100%;
+                            height: auto;
+                            aspect-ratio: 2.75/4;
+                        }
+
+                        .movie-poster {
+                            object-fit: cover;
+                            border: solid #000 2px;
+                        }
+                    
+                        .add-button {
+                            display: none;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            p {
+                                padding-top: 30%;
+                                font-size: 15px;
+                            }
+                            i {
+                                color: #000;
+                                font-size: 50px;
+                            }
+                        }
+                        &:hover {
+                            .movie-poster {
+                                opacity: 30%;
+                            }
+                            .add-button {
+                                display: block;
+                                cursor: pointer;
+                            }
+                        }
                     }
-                    .fa-plus-circle, .fa-minus-circle {
-                        font-size: 30px;
-                        padding: 0px 10px;
+                    .read-more {
+                        border: solid #000 2px;
+                        width: 100%;
+                        padding: 5px;
                     }
                 }
             }
@@ -102,9 +139,21 @@ main {
                 padding: 0px 30px;
                 text-align: left;
                 li {
+                    font-size: 20px;
                     padding: 5px;
-                    input {
-                        margin-right: 5px;
+                    display: flex;
+                    justify-content: space-between;
+                    .movie-list-item {
+                        display: flex;
+                        input {
+                            margin: 0px 10px;
+                        }
+                        p {
+                            margin: 0;
+                        }
+                    }
+                    i {
+                        padding-left: 5px;
                     }
                 }
             }
@@ -160,6 +209,9 @@ footer {
             .results {
                 ul {
                     flex-direction: column;
+                    li {
+                        width: 100%;
+                    }
                 }
             }
             .movie-list {
