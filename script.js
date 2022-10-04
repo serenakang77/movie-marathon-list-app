@@ -119,14 +119,14 @@ movieMarathonApp.displayMovie = (apiResponse) => {
 
 // Create toggleList method that adds and removes movie titles to the list when the user clicks + or -
 movieMarathonApp.toggleList = (res) => {
-    const plusButtonElement = document.getElementById(`addButton${res}`)
+    const plusButtonElement = document.getElementById(`add${res}`)
     plusButtonElement.addEventListener("click", () => {
         movieMarathonApp.movieListulElement = document.querySelector(".movie-list ul")
         movieMarathonApp.movieListliElement = document.createElement("li");
         movieMarathonApp.movieListliElement.setAttribute("id", res)
         // if()
         movieMarathonApp.movieListliElement.innerHTML = `
-        <span class="movie-list-item"><input type="checkbox"><p>${res}</p></span>
+        <span class="movie-list-item"><input type="checkbox" id="check${res}"><label for="check${res}">${res}</label></span>
         <i class="fa fa-minus-circle" aria-hidden="true" id="removeButton${res}"></i>
         `
         movieMarathonApp.movieListulElement.append(movieMarathonApp.movieListliElement)

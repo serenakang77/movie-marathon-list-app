@@ -146,10 +146,13 @@ main {
                     .movie-list-item {
                         display: flex;
                         input {
-                            margin: 0px 10px;
+                            margin-right: 10px;
                         }
-                        p {
+                        label {
                             margin: 0;
+                        }
+                        input:checked + label {
+                            text-decoration: line-through ;
                         }
                     }
                     i {

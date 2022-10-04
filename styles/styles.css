@@ -363,10 +363,13 @@ main .main-container .movie-list ul li .movie-list-item {
   display: flex;
 }
 main .main-container .movie-list ul li .movie-list-item input {
-  margin: 0px 10px;
+  margin-right: 10px;
 }
-main .main-container .movie-list ul li .movie-list-item p {
+main .main-container .movie-list ul li .movie-list-item label {
   margin: 0;
+}
+main .main-container .movie-list ul li .movie-list-item input:checked + label {
+  text-decoration: line-through;
 }
 main .main-container .movie-list ul li i {
   padding-left: 5px;
