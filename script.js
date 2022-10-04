@@ -78,7 +78,7 @@ movieMarathonApp.appendMovieInformation = (apiResponse) => {
     liElement.innerHTML = `
     <div class="poster-container">
         <img class="movie-poster" src="${apiResponse.Poster}" alt="Poster Picture is not available">
-        <div class="add-button">
+        <div class="add-button" id="addButton${apiResponse.Title}">
             <p>Add to List</p>
             <i class="fa fa-plus-circle" id="add${apiResponse.Title}" aria-hidden="true"></i>
         </div>
@@ -118,7 +118,7 @@ movieMarathonApp.displayMovie = (apiResponse) => {
 
 // Create toggleList method that adds and removes movie titles to the list when the user clicks + or -
 movieMarathonApp.toggleList = (res) => {
-    const plusButtonElement = document.getElementById(`add${res}`)
+    const plusButtonElement = document.getElementById(`addButton${res}`)
     plusButtonElement.addEventListener("click", () => {
         movieMarathonApp.movieListulElement = document.querySelector(".movie-list ul")
         movieMarathonApp.movieListliElement = document.createElement("li");
