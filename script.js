@@ -39,7 +39,7 @@ movieMarathonApp.searchMovie = (userInput) => {
         if(err.message === "movieList is undefined"){
             alert("There are no results available, please search different keywords!")
         }else {
-            alert("API call is not working, please try it again later")
+            alert("API call is not working, please try to search different keywords!")
         }
     })
 } 
@@ -95,16 +95,30 @@ movieMarathonApp.appendMovieInformation = (apiResponse) => {
 // Create displayMovies method that manipulates the DOM to add movie images and information
 movieMarathonApp.displayMovie = (apiResponse) => {
     // !! (SERENA WILL WORK ON THIS) Handle any errors from searchMovie before displaying(NEED TO WORK)
-    console.log(apiResponse);
     movieMarathonApp.ulElement = document.querySelector(".results ul")
     movieMarathonApp.ulElement.innerHTML = "";
     if(apiResponse.length <3){
         for(let i = 0; i<apiResponse.length; i++){
-            movieMarathonApp.appendMovieInformation(apiResponse[i])
+            if(apiResponse[i].Poster !== "N/A"){
+                movieMarathonApp.appendMovieInformation(apiResponse[i])
+            }else if(apiResponse[0].Poster === "N/A" && apiResponse.length === 1){
+                alert("There are no results available, please search different keywords!")
+                // search gac short
+            }else if(apiResponse[0].Poster === "N/A" && apiResponse[1].Poster === "N/A"){
+                alert("There are no results available, please search different keywords!")
+                return
+                // search hih or mils error
+            }
         }
     }else{
         for(let i = 0; i<3; i++){
-            movieMarathonApp.appendMovieInformation(apiResponse[i])
+            if(apiResponse[i].Poster !== "N/A"){
+                movieMarathonApp.appendMovieInformation(apiResponse[i])
+            }else if(apiResponse[0].Poster === "N/A" && apiResponse[1].Poster === "N/A" && apiResponse[2].Poster === "N/A"){
+                alert("There are no results available, please search different keywords!")
+                return
+                // teas acs
+            }
             // !! (DANA WILL WORK ON THIS) *STRETCH GOAL* - Create an event listener on the arrow buttons that carousels through more movies when the user clicks it(NEED TO WORK)
         }
     }
@@ -122,22 +136,55 @@ movieMarathonApp.toggleList = (res) => {
     const plusButtonElement = document.getElementById(`addButton${res}`)
     plusButtonElement.addEventListener("click", () => {
         movieMarathonApp.movieListulElement = document.querySelector(".movie-list ul")
-        movieMarathonApp.movieListliElement = document.createElement("li");
-        movieMarathonApp.movieListliElement.setAttribute("id", res)
+        const movieListliElement = document.createElement("li");
+        movieListliElement.setAttribute("id", res)
         // if()
-        movieMarathonApp.movieListliElement.innerHTML = `
-        <span class="movie-list-item"><input type="checkbox" id="check${res}"><label for="check${res}">${res}</label></span>
-        <i class="fa fa-minus-circle" aria-hidden="true" id="removeButton${res}"></i>
-        `
-        movieMarathonApp.movieListulElement.append(movieMarathonApp.movieListliElement)
-        movieMarathonApp.remove(res)
+        
+        // Find everything thats already there
+        const currentList = document.querySelectorAll(".movie-list li")
+        let currentTextList = []
+        currentList.forEach((item) => {
+            currentTextList.push(item.innerText)
+        })
+        // See if res is in the list of all
+        if(currentTextList.includes(res)){
+            alert("Movie is already on the list!")
+        }else {
+            movieListliElement.innerHTML = `
+            <span class="movie-list-item"><input type="checkbox" id="check${res}"><label for="check${res}">${res}</label></span>
+            <div class="movie-list-icons">
+            <i class="fa fa-minus-circle" aria-hidden="true" id="removeButton${res}"></i>
+            <div class="heartAnimation" id="heart${res}"></div>
+            </div>
+            `
+            // <input type="checkbox" id="heart"><label for="heart">&#9829</label>
+            movieMarathonApp.movieListulElement.append(movieListliElement)
+            movieMarathonApp.remove(res)
+            movieMarathonApp.heartAnimation(res)
+            
+        }
+    })
+}
+
+// show heart animation when they click
+movieMarathonApp.heartAnimation = function(res){
+    const heartElement = document.getElementById(`heart${res}`);
+    heartElement.addEventListener("click", function(){
+        this.classList.toggle("animate")
+        if(this.id === `heart${res}`){
+            for(let i = 0; i < this.classList.length; i++){
+                if(this.classList[i] === "animate"){
+                    movieMarathonApp.movieListulElement.prepend(this.parentElement.parentElement)
+                }else{
+                    movieMarathonApp.movieListulElement.append(this.parentElement.parentElement)
+                }
+            }
+        }
     })
 }
 
 movieMarathonApp.remove = (res) => {
     const minusButtonElement = document.getElementById(`removeButton${res}`)
-    // const minusButtonElement = document.querySelectorAll(".fa-minus-circle")
-    console.log(minusButtonElement);
     minusButtonElement.addEventListener("click", () => {
         const selectedMovieToRemove = document.getElementById(res)
         movieMarathonApp.movieListulElement.removeChild(selectedMovieToRemove)
@@ -179,8 +226,21 @@ function lengthCheck(string) {
     }
 }
 
+movieMarathonApp.curtain = function(){
+    const curtainElement = document.getElementById("curtain")
+    const curtainleft = document.querySelector(".curtainleft")
+    const curtainright = document.querySelector(".curtainright")
+    curtainElement.addEventListener("click", function(){
+        curtainleft.style.transform = "translateX(-100%)"
+        curtainright.style.transform = "translateX(100%)"
+        curtainleft.style.transition = "all 2s ease-out"
+        curtainright.style.transition = "all 2s ease-out"
+    })
+}
+
 // Create init method on movieMarathonApp
 movieMarathonApp.init = () => {
+    movieMarathonApp.curtain()
     movieMarathonApp.searchMovie(`avengers`);
     // Make an onSubmit event listener on searchBarElement
     movieMarathonApp.searchBarSubmitButton.addEventListener("click", () => {

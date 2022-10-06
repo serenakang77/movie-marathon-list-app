@@ -377,6 +377,80 @@ main .main-container .movie-list ul li i {
   align-self: center;
 }
 
+body {
+  overflow-x: hidden;
+}
+
+#curtain {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: static;
+}
+
+.curtainleft, .curtainright {
+  position: absolute;
+  top: 0;
+  width: 21%;
+  height: 100%;
+  filter: brightness(100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  z-index: 2;
+}
+
+.curtainleft {
+  background-image: url("../assets/left-curtain.png");
+}
+
+.curtainright {
+  background-image: url("../assets/rightcurt.png");
+  right: 0;
+}
+
+.heartAnimation {
+  background-image: url("../assets/web_heart_animation.png");
+  background-repeat: no-repeat;
+  background-size: 2900%;
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.animate {
+  -webkit-animation: heart-burst 1s steps(28) forwards;
+          animation: heart-burst 1s steps(28) forwards;
+}
+
+@-webkit-keyframes heart-burst {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+@keyframes heart-burst {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+.movie-list-icons {
+  display: flex;
+  align-items: center;
+}
+
+.movie-list-item {
+  align-items: center;
+}
+
 footer {
   padding-top: 5px;
   padding-bottom: 5px;
