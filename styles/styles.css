@@ -374,6 +374,7 @@ body {
 }
 .popup .popup-container .popup-info {
   display: flex;
+  justify-content: initial;
   align-items: center;
   padding: 20px;
 }
@@ -423,8 +424,9 @@ main .search-bar {
 main .search-bar fieldset {
   border: none;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: initial;
+  flex-direction: row;
 }
 main .search-bar fieldset input {
   width: 70%;
@@ -467,9 +469,10 @@ main .instructions i:hover {
   color: #87bec0;
 }
 main .main-container {
-  display: flex;
   flex-wrap: wrap;
+  display: flex;
   justify-content: space-around;
+  align-items: initial;
 }
 main .main-container h2 {
   font-size: 25px;
@@ -486,9 +489,10 @@ main .main-container .results ul {
   list-style: none;
   padding-left: 5%;
   padding-right: 5%;
-  display: flex;
   margin: 0;
+  display: flex;
   justify-content: center;
+  align-items: initial;
 }
 main .main-container .results ul li {
   margin: 0% 5% 5% 5%;
@@ -554,6 +558,7 @@ main .main-container .movie-list .list-container {
 }
 main .main-container .movie-list .list-container .movie-list-icons {
   display: flex;
+  justify-content: initial;
   align-items: center;
 }
 main .main-container .movie-list .list-container .movie-list-item {
@@ -570,6 +575,7 @@ main .main-container .movie-list .list-container ul li {
   padding: 0 5px 5px 5px;
   display: flex;
   justify-content: space-between;
+  align-items: initial;
 }
 main .main-container .movie-list .list-container ul li .movie-list-item {
   display: flex;
@@ -647,6 +653,7 @@ footer {
     list-style: none;
     display: flex;
     justify-content: space-evenly;
+    align-items: initial;
     padding: 0;
   }
   header .mobile-nav ul li {

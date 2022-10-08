@@ -1,0 +1,5 @@
+@mixin flexjustifyAlign($type, $value: initial){
+    display: flex;
+    justify-content: $type;
+    align-items: $value;
+}

@@ -1,5 +1,6 @@
 @use 'partials/setup';
 @use 'partials/variables' as *;
+@use "partials/mixin" as *;
 
 // global styles
 
@@ -146,8 +147,9 @@ body {
         }
 
         .popup-info {
-            display: flex;
-            align-items: center;
+            @include flexjustifyAlign(initial, center);
+            // display: flex;
+            // align-items: center;
             padding: 20px;
 
             ul {
@@ -206,9 +208,10 @@ main {
 
         fieldset {
             border: none;
-            display: flex;
+            @include flexjustifyAlign(space-between);
+            // display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            // justify-content: space-between;
 
             input {
                 width: 70%;
@@ -257,9 +260,10 @@ main {
     }
 
     .main-container {
-        display: flex;
+        // display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        // justify-content: space-around;
+        @include flexjustifyAlign(space-around);
 
         h2 {
             font-size: 25px;
@@ -277,9 +281,10 @@ main {
                 list-style: none;
                 padding-left: 5%;
                 padding-right: 5%;
-                display: flex;
+                // display: flex;
                 margin: 0;
-                justify-content: center;
+                // justify-content: center;
+                @include flexjustifyAlign(center);
 
                 li {
                     margin: 0% 5% 5% 5%;
@@ -357,9 +362,10 @@ main {
                 overflow-y: auto;
 
                 .movie-list-icons {
-                        display: flex;
-                        align-items: center;
-                    }
+                    @include flexjustifyAlign(initial, center);
+                        // display: flex;
+                        // align-items: center;
+                }
 
                 .movie-list-item {
                     align-items: center;
@@ -374,8 +380,9 @@ main {
                     li {
                         font-size: 20px;
                         padding: 0 5px 5px 5px;
-                        display: flex;
-                        justify-content: space-between;
+                        @include flexjustifyAlign(space-between);
+                        // display: flex;
+                        // justify-content: space-between;
             
                         .movie-list-item {
                             display: flex;
@@ -478,8 +485,9 @@ footer {
             ul {
                 background-color: #000;
                 list-style: none;
-                display: flex;
-                justify-content: space-evenly;
+                @include flexjustifyAlign(space-evenly);
+                // display: flex;
+                // justify-content: space-evenly;
                 padding: 0;
 
                 li {
