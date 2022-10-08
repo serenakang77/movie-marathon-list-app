@@ -206,13 +206,12 @@ main {
         padding: 20px;
         width: 500px;
 
-        fieldset {
+        form {
             border: none;
             @include flexjustifyAlign(space-between);
             // display: flex;
             flex-direction: row;
             // justify-content: space-between;
-
             input {
                 width: 70%;
                 padding: 10px;

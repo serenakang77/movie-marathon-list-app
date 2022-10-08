@@ -421,20 +421,20 @@ main .search-bar {
   padding: 20px;
   width: 500px;
 }
-main .search-bar fieldset {
+main .search-bar form {
   border: none;
   display: flex;
   justify-content: space-between;
   align-items: initial;
   flex-direction: row;
 }
-main .search-bar fieldset input {
+main .search-bar form input {
   width: 70%;
   padding: 10px;
   border: solid #000 2px;
   border-radius: 5px;
 }
-main .search-bar fieldset button {
+main .search-bar form button {
   padding: 10px;
   border: solid #000 2px;
   background-color: #FAF9F6;
@@ -442,7 +442,7 @@ main .search-bar fieldset button {
   border-radius: 5px;
   width: 25%;
 }
-main .search-bar fieldset button:hover {
+main .search-bar form button:hover {
   cursor: pointer;
   background-color: rgba(250, 249, 246, 0.75);
 }
