@@ -264,7 +264,7 @@ body {
 .curtainright {
   position: absolute;
   top: 0;
-  width: 16%;
+  width: 13%;
   height: 800px;
   filter: brightness(100%);
   background-repeat: no-repeat;
