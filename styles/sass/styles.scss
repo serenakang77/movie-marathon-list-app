@@ -3,6 +3,13 @@
 
 // global styles
 
+.mobile-only {
+    display: none;
+}
+.desktop-only {
+    display: initial;
+}
+
 body {
     background-color: $cyan;
     text-align: center;
@@ -19,7 +26,7 @@ body {
 }
 
 // curtain styles
-#curtain {
+.curtain {
     top: 0;
     left: 0;
     width: 100%;
@@ -31,13 +38,13 @@ body {
 .curtainright {
     position: absolute;
     top: 0;
-    width: 21%;
-    height: 100%;
+    width: 16%;
+    height: 800px;
     filter: brightness(100%);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center center;
-    z-index: 2;
+    cursor: pointer;
 }
 
 .curtainleft {
@@ -45,13 +52,13 @@ body {
 }
 
 .curtainright {
-    background-image: url("../assets/rightcurt.png");
+    background-image: url("../assets/right-curt.png");
     right: 0;
 }
 
 // heart styling
 .heartAnimation {
-    background-image: url('../assets/web_heart_animation.png');
+    background-image: url('../assets/web-heart-animation.png');
     background-repeat: no-repeat;
     background-size: 2900%;
     height: 50px;
@@ -66,21 +73,12 @@ body {
 
 @keyframes heart-burst {
     0% {
-        background-position: left
+        background-position: left;
     }
 
     100% {
-        background-position: right
+        background-position: right;
     }
-}
-
-.movie-list-icons {
-    display: flex;
-    align-items: center;
-}
-
-.movie-list-item {
-    align-items: center;
 }
 
 // popup styles
@@ -103,6 +101,7 @@ body {
         max-height: 80%;
         background: $off-white;
         border: solid #000 2px;
+        border-radius: 25px;
 
         .popup-top {
             position: sticky;
@@ -125,6 +124,24 @@ body {
             h3 {
                 padding: 5px 0px;
                 margin: 0;
+            }
+        }
+
+        .final-list-info {
+            padding: 20px;
+            margin: auto;
+            width: 75%;
+            ol {
+                text-align: left;
+                font-size: 20px;
+                li {
+                        margin: 0;
+                        padding-bottom: 10px;
+                
+                        &:last-child {
+                            padding-bottom: 0px;
+                        }
+                    }
             }
         }
 
@@ -203,8 +220,38 @@ main {
             button {
                 padding: 10px;
                 border: solid #000 2px;
+                background-color: $off-white;
+                color: #000;
                 border-radius: 5px;
                 width: 25%;
+                &:hover {
+                        cursor: pointer;
+                        background-color: rgba($off-white, .75);
+                    }
+            }
+        }
+    }
+
+    .instructions {
+        background-color: $off-white;
+        margin: auto;
+        margin-bottom: 30px;
+        padding: 15px;
+        width: 75%;
+        border-radius: 25px;
+        border: solid #000 2px;
+        h2, p {
+            margin: 0;
+            padding: 10px;
+        }
+        i {
+            color: #000;
+            font-size: 30px;
+            float: left;
+            cursor: pointer;
+
+            &:hover {
+                color: $cyan;
             }
         }
     }
@@ -222,6 +269,7 @@ main {
         .results {
             background-color: $off-white;
             width: 60%;
+            max-height: 475px;
             border-radius: 25px;
             border: solid #000 2px;
 
@@ -231,6 +279,7 @@ main {
                 padding-right: 5%;
                 display: flex;
                 margin: 0;
+                justify-content: center;
 
                 li {
                     margin: 0% 5% 5% 5%;
@@ -282,10 +331,14 @@ main {
 
                     .read-more {
                         border: solid #000 2px;
+                        border-radius: 5px;
+                        background-color: $cyan;
+                        color: #000;
                         width: 100%;
                         padding: 5px;
                         &:hover {
                             cursor: pointer;
+                            background-color: rgba($cyan, .75);
                         }
                     }
                 }
@@ -295,118 +348,81 @@ main {
         .movie-list {
             background-color: $off-white;
             width: 30%;
+            max-height: 475px;
             border-radius: 25px;
             border: solid #000 2px;
 
-            ul {
-                list-style-type: none;
-                padding: 0px 30px;
-                text-align: left;
+            .list-container {
+                max-height: 65%;
+                overflow-y: auto;
 
-                li {
-                    font-size: 20px;
-                    padding: 5px;
-                    display: flex;
-                    justify-content: space-between;
-
-                    .movie-list-item {
+                .movie-list-icons {
                         display: flex;
-
-                        input {
-                            margin-right: 10px;
-                        }
-
-                        label {
-                            margin: 0;
-                        }
-
-                        input:checked+label {
-                            text-decoration: line-through;
-                        }
+                        align-items: center;
                     }
 
-                    i {
-                        color: #000;
-                        padding-left: 5px;
-                        cursor: pointer;
-                        align-self: center;
-                        &:hover {
-                            color: $cyan;
+                .movie-list-item {
+                    align-items: center;
+                }
+
+                ul {
+                    list-style-type: none;
+                    text-align: left;
+                    padding-left: 5%;
+                    margin: 0;
+            
+                    li {
+                        font-size: 20px;
+                        padding: 0 5px 5px 5px;
+                        display: flex;
+                        justify-content: space-between;
+            
+                        .movie-list-item {
+                            display: flex;
+            
+                            input {
+                                margin-right: 10px;
+                            }
+            
+                            label {
+                                margin: 0;
+                            }
+            
+                            input:checked+label {
+                                text-decoration: line-through;
+                            }
+                        }
+            
+                        i {
+                            color: #000;
+                            padding-left: 5px;
+                            cursor: pointer;
+                            align-self: center;
+            
+                            &:hover {
+                                color: $cyan;
+                            }
                         }
                     }
                 }
             }
+            .export {
+                border: solid #000 2px;
+                border-radius: 5px;
+                background-color: $cyan;
+                color: #000;
+                width: 75%;
+                padding: 5px;
+                margin-top: 5%;
+                margin-bottom: 5%;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: rgba($cyan, .75);
+                }
+            }
         }
     }
-}
-
-//Test for curtain
-body{
-    overflow-x: hidden;
-}
-#curtain{
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: static;
-}
-
-.curtainleft, .curtainright{
-    position: absolute;
-    top: 0;
-    width: 21%;
-    height: 100%;
-    filter: brightness(100%);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: center center;
-    z-index: 2;
-}
-
-.curtainleft{
-    background-image: url("../assets/left-curtain.png");
-}
-.curtainright{
-    background-image: url("../assets/rightcurt.png");
-    right: 0;
-}
-
-
-
-
-
-
-//Test for heart
-.heartAnimation{
-    background-image: url('../assets/web_heart_animation.png');
-	background-repeat: no-repeat;
-	background-size: 2900%;
-    height: 50px;
-	width: 50px;
-    margin: 0 auto;
-    cursor: pointer;
-}
-
-.animate {
-    animation: heart-burst 1s steps(28) forwards;
-  }
-  
-  @keyframes heart-burst {
-      0% {
-          background-position: left
-      }
-      100% {
-          background-position: right
-      }
-  }
-
-  .movie-list-icons{
-    display: flex;
-    align-items: center;
-  }
-  .movie-list-item{
-    align-items: center;
 }
 
 // footer styles
@@ -417,7 +433,21 @@ footer {
 }
 
 // mobile design
+@media only screen and (max-width: 1600px) {
+    .curtain{
+      display: none;
+    }
+}
+
 @media only screen and (max-width: 595px) {
+
+    .mobile-only {
+        display: initial;
+    }
+
+    .desktop-only {
+        display: none;
+    }
 
     .popup {
         .popup-container {
@@ -431,6 +461,10 @@ footer {
                 }
             }
         }
+    }
+
+    .curtain {
+        display: none;
     }
 
     header {
@@ -468,12 +502,17 @@ footer {
             padding: 20px 0px;
         }
 
+        .instructions {
+            width: 100%;
+        }
+
         .main-container {
             flex-direction: column;
 
             .results,
             .movie-list {
                 width: 100%;
+                max-height: 100%;
             }
 
             .results {
@@ -483,7 +522,10 @@ footer {
                     li {
                         width: 90%;
                         p {
-                            font-size: 25px;
+                            font-size: 20px;
+                        }
+                        .read-more {
+                            margin-bottom: 20px;
                         }
                         .poster-container {
                             .add-button {
