@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
-    <div id="curtain">
+    <div class="curtain">
         <div class="curtain_panel curtainleft"></div>
         <div class="curtain_panel curtainright"></div>
     </div>
@@ -39,6 +39,12 @@
                     </fieldset>
                 </form>
             </section>
+            <section class="instructions">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                <h2>Instructions</h2>
+                <p>Type a movie title into the search bar to get results and then read more about the movies or add them directly to your list! Check them off as you go, remove them if you want, and click the heart icon beside your favourites to push them to the top.</p>
+                <p>When you're done, export your list, grab some popcorn, and enjoy your movie marathon!</p>
+            </section>
             <div class="main-container">
                 <section class="results">
                     <h2></h2>
@@ -47,8 +53,11 @@
                 </section>
                 <section class="movie-list">
                     <h2>Movie List</h2>
-                    <ul>
-                    </ul>
+                    <div class="list-container">
+                        <ul>
+                        </ul>
+                    </div>
+                    <button class="export">Export List</button>
                 </section>
             </div>
         </div>

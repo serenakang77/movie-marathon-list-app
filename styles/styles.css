@@ -230,6 +230,14 @@ html {
   overflow: hidden;
 }
 
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: initial;
+}
+
 body {
   background-color: #87bec0;
   text-align: center;
@@ -244,7 +252,7 @@ body {
   margin: 0 auto;
 }
 
-#curtain {
+.curtain {
   top: 0;
   left: 0;
   width: 100%;
@@ -256,13 +264,13 @@ body {
 .curtainright {
   position: absolute;
   top: 0;
-  width: 21%;
-  height: 100%;
+  width: 300px;
+  height: 800px;
   filter: brightness(100%);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center center;
-  z-index: 2;
+  z-index: -10;
 }
 
 .curtainleft {
@@ -306,15 +314,6 @@ body {
     background-position: right;
   }
 }
-.movie-list-icons {
-  display: flex;
-  align-items: center;
-}
-
-.movie-list-item {
-  align-items: center;
-}
-
 .popup {
   display: none;
   z-index: 100;
@@ -334,6 +333,7 @@ body {
   max-height: 80%;
   background: #FAF9F6;
   border: solid #000 2px;
+  border-radius: 25px;
 }
 .popup .popup-container .popup-top {
   position: -webkit-sticky;
@@ -355,6 +355,22 @@ body {
 .popup .popup-container .popup-top h3 {
   padding: 5px 0px;
   margin: 0;
+}
+.popup .popup-container .final-list-info {
+  padding: 20px;
+  margin: auto;
+  width: 75%;
+}
+.popup .popup-container .final-list-info ol {
+  text-align: left;
+  font-size: 20px;
+}
+.popup .popup-container .final-list-info ol li {
+  margin: 0;
+  padding-bottom: 10px;
+}
+.popup .popup-container .final-list-info ol li:last-child {
+  padding-bottom: 0px;
 }
 .popup .popup-container .popup-info {
   display: flex;
@@ -419,8 +435,36 @@ main .search-bar fieldset input {
 main .search-bar fieldset button {
   padding: 10px;
   border: solid #000 2px;
+  background-color: #FAF9F6;
+  color: #000;
   border-radius: 5px;
   width: 25%;
+}
+main .search-bar fieldset button:hover {
+  cursor: pointer;
+  background-color: rgba(250, 249, 246, 0.75);
+}
+main .instructions {
+  background-color: #FAF9F6;
+  margin: auto;
+  margin-bottom: 30px;
+  padding: 15px;
+  width: 75%;
+  border-radius: 25px;
+  border: solid #000 2px;
+}
+main .instructions h2, main .instructions p {
+  margin: 0;
+  padding: 10px;
+}
+main .instructions i {
+  color: #000;
+  font-size: 30px;
+  float: left;
+  cursor: pointer;
+}
+main .instructions i:hover {
+  color: #87bec0;
 }
 main .main-container {
   display: flex;
@@ -434,6 +478,7 @@ main .main-container h2 {
 main .main-container .results {
   background-color: #FAF9F6;
   width: 60%;
+  max-height: 475px;
   border-radius: 25px;
   border: solid #000 2px;
 }
@@ -443,6 +488,7 @@ main .main-container .results ul {
   padding-right: 5%;
   display: flex;
   margin: 0;
+  justify-content: center;
 }
 main .main-container .results ul li {
   margin: 0% 5% 5% 5%;
@@ -485,49 +531,80 @@ main .main-container .results ul li .poster-container:hover .add-button {
 }
 main .main-container .results ul li .read-more {
   border: solid #000 2px;
+  border-radius: 5px;
+  background-color: #87bec0;
+  color: #000;
   width: 100%;
   padding: 5px;
 }
 main .main-container .results ul li .read-more:hover {
   cursor: pointer;
+  background-color: rgba(135, 190, 192, 0.75);
 }
 main .main-container .movie-list {
   background-color: #FAF9F6;
   width: 30%;
+  max-height: 475px;
   border-radius: 25px;
   border: solid #000 2px;
 }
-main .main-container .movie-list ul {
-  list-style-type: none;
-  padding: 0px 30px;
-  text-align: left;
+main .main-container .movie-list .list-container {
+  max-height: 65%;
+  overflow-y: auto;
 }
-main .main-container .movie-list ul li {
+main .main-container .movie-list .list-container .movie-list-icons {
+  display: flex;
+  align-items: center;
+}
+main .main-container .movie-list .list-container .movie-list-item {
+  align-items: center;
+}
+main .main-container .movie-list .list-container ul {
+  list-style-type: none;
+  text-align: left;
+  padding-left: 5%;
+  margin: 0;
+}
+main .main-container .movie-list .list-container ul li {
   font-size: 20px;
-  padding: 5px;
+  padding: 0 5px 5px 5px;
   display: flex;
   justify-content: space-between;
 }
-main .main-container .movie-list ul li .movie-list-item {
+main .main-container .movie-list .list-container ul li .movie-list-item {
   display: flex;
 }
-main .main-container .movie-list ul li .movie-list-item input {
+main .main-container .movie-list .list-container ul li .movie-list-item input {
   margin-right: 10px;
 }
-main .main-container .movie-list ul li .movie-list-item label {
+main .main-container .movie-list .list-container ul li .movie-list-item label {
   margin: 0;
 }
-main .main-container .movie-list ul li .movie-list-item input:checked + label {
+main .main-container .movie-list .list-container ul li .movie-list-item input:checked + label {
   text-decoration: line-through;
 }
-main .main-container .movie-list ul li i {
+main .main-container .movie-list .list-container ul li i {
   color: #000;
   padding-left: 5px;
   cursor: pointer;
   align-self: center;
 }
-main .main-container .movie-list ul li i:hover {
+main .main-container .movie-list .list-container ul li i:hover {
   color: #87bec0;
+}
+main .main-container .movie-list .export {
+  border: solid #000 2px;
+  border-radius: 5px;
+  background-color: #87bec0;
+  color: #000;
+  width: 75%;
+  padding: 5px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+main .main-container .movie-list .export:hover {
+  cursor: pointer;
+  background-color: rgba(135, 190, 192, 0.75);
 }
 
 footer {
@@ -536,6 +613,12 @@ footer {
 }
 
 @media only screen and (max-width: 595px) {
+  .mobile-only {
+    display: initial;
+  }
+  .desktop-only {
+    display: none;
+  }
   .popup .popup-container .popup-info {
     flex-direction: column;
   }
@@ -543,6 +626,9 @@ footer {
     padding: 0;
   }
   .popup .popup-container .popup-info img {
+    display: none;
+  }
+  .curtain {
     display: none;
   }
   header .wrapper {
@@ -571,12 +657,16 @@ footer {
     width: 100%;
     padding: 20px 0px;
   }
+  main .instructions {
+    width: 100%;
+  }
   main .main-container {
     flex-direction: column;
   }
   main .main-container .results,
 main .main-container .movie-list {
     width: 100%;
+    max-height: 100%;
   }
   main .main-container .results ul {
     flex-direction: column;
@@ -585,7 +675,10 @@ main .main-container .movie-list {
     width: 90%;
   }
   main .main-container .results ul li p {
-    font-size: 25px;
+    font-size: 20px;
+  }
+  main .main-container .results ul li .read-more {
+    margin-bottom: 20px;
   }
   main .main-container .results ul li .poster-container .add-button p {
     padding-top: 40%;

@@ -69,7 +69,8 @@ movieMarathonApp.searchBarSubmitButton = document.querySelector(".search-button"
 // Create appendMovieInformation method that adds the li element and append it to ul element
 movieMarathonApp.appendMovieInformation = (apiResponse) => {
     const liElement = document.createElement("li");
-    const movieTitle = lengthCheck(apiResponse.Title);
+    const movieTitle = apiResponse.Title;
+    const movieTitleShort = lengthCheck(movieTitle);
     liElement.innerHTML = `
     <div class="poster-container">
         <img class="movie-poster" src="${apiResponse.Poster}" alt="Poster Picture is not available">
@@ -78,7 +79,12 @@ movieMarathonApp.appendMovieInformation = (apiResponse) => {
             <i class="fa fa-plus-circle" id="add${apiResponse.Title}" aria-hidden="true"></i>
         </div>
     </div>
-    <p class="${movieTitle}">${movieTitle}<br>(${apiResponse.Year})</p>
+    <span class="desktop-only">
+    <p class="${movieTitle}">${movieTitleShort}<br>(${apiResponse.Year})</p>
+    </span>
+    <span class="mobile-only">
+    <p class="${movieTitle}">${movieTitle} (${apiResponse.Year})</p>
+    </span>    
     <button class="read-more">Read More</button>
     `
     // <i class="fa fa-minus-circle" id="remove${apiResponse.Title}" aria-hidden="true"></i>
@@ -98,12 +104,9 @@ movieMarathonApp.displayMovie = (apiResponse) => {
                 movieMarathonApp.appendMovieInformation(apiResponse[i])
             }else if(apiResponse[0].Poster === "N/A" && apiResponse.length === 1){
                 alert("There are no results available, please search different keywords!")
-                // search gac short
-                console.log(apiResponse);
             }else if(apiResponse[0].Poster === "N/A" && apiResponse[1].Poster === "N/A"){
                 alert("There are no results available, please search different keywords!")
                 return
-                // search hih or mils error
             }
         }
     }else{
@@ -234,21 +237,19 @@ function lengthCheck(string) {
     }
 }
 
-movieMarathonApp.curtain = function(){
-    const curtainElement = document.getElementById("curtain")
-    const curtainleft = document.querySelector(".curtainleft")
-    const curtainright = document.querySelector(".curtainright")
-    curtainElement.addEventListener("click", function(){
-        curtainleft.style.transform = "translateX(-100%)"
-        curtainright.style.transform = "translateX(100%)"
-        curtainleft.style.transition = "all 2s ease-out"
-        curtainright.style.transition = "all 2s ease-out"
-    })
-}
+// movieMarathonApp.curtain = function(){
+//     const curtainElement = document.querySelector(".curtain")
+//     const curtainleft = document.querySelector(".curtainleft")
+//     const curtainright = document.querySelector(".curtainright")
+//     curtainElement.addEventListener("click", function(){
+//         curtainleft.style.transform = "translateX(-100%)"
+//         curtainright.style.transform = "translateX(100%)"
+//         curtainleft.style.transition = "all 2s ease-out"
+//         curtainright.style.transition = "all 2s ease-out"
+//     })
+// }
 
 movieMarathonApp.popUpModal = (data) => {
-
-    console.log(data);
 
     const popUpModal = document.querySelector(`.popup`);
         popUpModal.innerHTML = `<div class="popup-container">
@@ -266,6 +267,7 @@ movieMarathonApp.popUpModal = (data) => {
                             <li><strong>Runtime:</strong> ${data.Runtime}</li>
                             <li><strong>Genre:</strong> ${data.Genre}</>
                             <li><strong>Plot:</strong> ${data.Plot}</li>
+                        </ul>
                     </div>
                 </div>`
         popUpModal.style.display = `block`;
@@ -275,6 +277,38 @@ movieMarathonApp.popUpModal = (data) => {
             popUpModal.style.display = ``;
             popUpModal.innerHTML = ``;
         })
+}
+
+movieMarathonApp.finalListPopUp = () => {
+
+    movieMarathonApp.finalList = document.querySelectorAll(`.list-container ul li label`);
+
+    const listPopUp = document.querySelector(`.popup`);
+    listPopUp.innerHTML = `<div class="popup-container">
+                <div class="popup-top">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                    <h3>Your Final List</h3>
+                </div>
+                <div class="final-list-info">
+                    <ol>
+                    </ol>
+                </div>
+            </div>`
+    listPopUp.style.display = `block`;
+
+    const finalListUl = document.querySelector(`.final-list-info ol`);
+
+    movieMarathonApp.finalList.forEach((item) => {
+        const finalListLi = document.createElement(`li`);
+        finalListLi.innerHTML = item.innerHTML
+        finalListUl.append(finalListLi);
+    })
+
+    const popupX = document.querySelector(`.fa-times-circle`);
+    popupX.addEventListener(`click`, function(){
+        listPopUp.style.display = ``;
+        listPopUp.innerHTML = ``;
+    })
 }
 
 movieMarathonApp.readMore = (listElement, movie) => {
@@ -320,14 +354,26 @@ movieMarathonApp.events = () => {
 
         event.preventDefault();
 
+        movieMarathonApp.searchBarElement = document.querySelector(".search-bar");
         // Set searchBarElement variable to get the userQuery
-        movieMarathonApp.searchBarElement = document.querySelector(".search");
+        movieMarathonApp.searchFieldElement = movieMarathonApp.searchBarElement.querySelector(".search");
 
-        movieMarathonApp.userMovie = movieMarathonApp.searchBarElement.value;
-        document.querySelector(`h2`).innerHTML = `Results for '${movieMarathonApp.userMovie}'`;
+        movieMarathonApp.userMovie = movieMarathonApp.searchFieldElement.value;
+        document.querySelector(`.results h2`).innerHTML = `Results for '${movieMarathonApp.userMovie}'`;
         movieMarathonApp.searchMovie(movieMarathonApp.userMovie);
-        movieMarathonApp.searchBarElement.value="";
+        movieMarathonApp.searchFieldElement.value="";
     })
+
+    // close instructions box
+    movieMarathonApp.instructionsBox = document.querySelector(`.instructions`)
+    movieMarathonApp.instructionsX = movieMarathonApp.instructionsBox.querySelector(`i`)
+    movieMarathonApp.instructionsX.addEventListener(`click`, function(){
+        movieMarathonApp.instructionsBox.style.display = `none`;
+    })
+
+    // on export list button click
+    movieMarathonApp.exportButton = document.querySelector(`.export`);
+    movieMarathonApp.exportButton.addEventListener(`click`, movieMarathonApp.finalListPopUp)
     
     // on results button click, show results
     resultsBtn.addEventListener(`click`, showResults);
@@ -348,10 +394,10 @@ movieMarathonApp.events = () => {
 // Create init method on movieMarathonApp
 movieMarathonApp.init = () => {
 
-    movieMarathonApp.curtain();
+    // movieMarathonApp.curtain();
 
     const defaultSearch = movieMarathonApp.random(movieMarathonApp.defaultMovies);
-    document.querySelector(`h2`).innerHTML = `Start with a '${defaultSearch}' movie and go from there`;
+    document.querySelector(`.results h2`).innerHTML = `Start with a '${defaultSearch}' movie and go from there`;
     movieMarathonApp.searchMovie(defaultSearch);
 
     movieMarathonApp.events();
