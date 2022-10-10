@@ -357,7 +357,7 @@ movieMarathonApp.events = () => {
 
   // when window is bigger than mobile, show both list and results
   window.addEventListener("resize", () => {
-    if (window.innerWidth >= 595) {
+    if (window.innerWidth >= 768) {
       movieMarathonApp.showListAndResults();
     } else {
       movieMarathonApp.showResults();

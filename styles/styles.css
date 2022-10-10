@@ -481,7 +481,7 @@ main .main-container h2 {
 main .main-container .results {
   background-color: #FAF9F6;
   width: 60%;
-  max-height: 475px;
+  max-height: 457px;
   border-radius: 25px;
   border: solid #000 2px;
 }
@@ -496,7 +496,7 @@ main .main-container .results ul {
 }
 main .main-container .results ul li {
   margin: 0% 5% 5% 5%;
-  width: 33%;
+  width: 23%;
 }
 main .main-container .results ul li .poster-container {
   position: relative;
@@ -548,7 +548,7 @@ main .main-container .results ul li .read-more:hover {
 main .main-container .movie-list {
   background-color: #FAF9F6;
   width: 30%;
-  max-height: 475px;
+  max-height: 457px;
   border-radius: 25px;
   border: solid #000 2px;
 }
@@ -623,24 +623,44 @@ footer {
     display: none;
   }
 }
-@media only screen and (max-width: 595px) {
+@media only screen and (max-width: 1024px) {
+  main .instructions {
+    width: 100%;
+  }
+  main .main-container {
+    flex-direction: column;
+  }
+  main .main-container .results,
+main .main-container .movie-list {
+    width: 100%;
+    max-height: 100%;
+  }
+  main .main-container .results {
+    margin-bottom: 30px;
+  }
+  main .main-container .results ul li p {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 768px) {
   .mobile-only {
     display: initial;
   }
   .desktop-only {
     display: none;
   }
-  .popup .popup-container .popup-info {
+  .popup .popup-container .popup-info, .popup .popup-container .final-list-info {
     flex-direction: column;
   }
-  .popup .popup-container .popup-info ul {
+  .popup .popup-container .popup-info ul, .popup .popup-container .final-list-info ul {
     padding: 0;
   }
-  .popup .popup-container .popup-info img {
+  .popup .popup-container .popup-info img, .popup .popup-container .final-list-info img {
     display: none;
   }
-  .curtain {
-    display: none;
+  .popup .popup-container .final-list-info {
+    width: 100%;
+    padding: 0;
   }
   header .wrapper {
     width: 90%;
@@ -669,25 +689,17 @@ footer {
     width: 100%;
     padding: 20px 0px;
   }
-  main .instructions {
-    width: 100%;
+  main .search-bar form input {
+    font-size: 90%;
   }
-  main .main-container {
-    flex-direction: column;
-  }
-  main .main-container .results,
-main .main-container .movie-list {
-    width: 100%;
-    max-height: 100%;
+  main .main-container .results {
+    margin: 0;
   }
   main .main-container .results ul {
     flex-direction: column;
   }
   main .main-container .results ul li {
     width: 90%;
-  }
-  main .main-container .results ul li p {
-    font-size: 20px;
   }
   main .main-container .results ul li .read-more {
     margin-bottom: 20px;
@@ -699,7 +711,7 @@ main .main-container .movie-list {
   main .main-container .results ul li .poster-container .add-button i {
     font-size: 75px;
   }
-  main .main-container .movie-list {
+  main .movie-list {
     display: none;
   }
 }
