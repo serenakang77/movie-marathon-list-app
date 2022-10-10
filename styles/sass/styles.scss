@@ -148,8 +148,6 @@ body {
 
         .popup-info {
             @include flexjustifyAlign(initial, center);
-            // display: flex;
-            // align-items: center;
             padding: 20px;
 
             ul {
@@ -567,5 +565,4 @@ footer {
             display: none;
         }
     }
-
 }
