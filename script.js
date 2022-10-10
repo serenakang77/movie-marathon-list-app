@@ -368,6 +368,8 @@ movieMarathonApp.events = () => {
   window.addEventListener("resize", () => {
     if (window.innerWidth >= 768) {
       movieMarathonApp.showListAndResults();
+    } else {
+      movieMarathonApp.showResults();
     }
   })
 }
