@@ -598,7 +598,13 @@ main .main-container .movie-list .list-container ul li i {
 main .main-container .movie-list .list-container ul li i:hover {
   color: #87bec0;
 }
+main .main-container .movie-list .list-placeholder {
+  width: 70%;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
 main .main-container .movie-list .export {
+  display: none;
   border: solid #000 2px;
   border-radius: 5px;
   background-color: #87bec0;

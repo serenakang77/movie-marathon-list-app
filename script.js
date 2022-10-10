@@ -15,6 +15,7 @@ movieMarathonApp.searchMovie = (userInput) => {
   const movieMarathonAppUrl = new URL(movieMarathonApp.url);
   movieMarathonAppUrl.search = new URLSearchParams({
     s: userInput,
+    type: "movie",
   });
 
   fetch(movieMarathonAppUrl, movieMarathonApp.options)
@@ -27,6 +28,7 @@ movieMarathonApp.searchMovie = (userInput) => {
     })
     .then((response) => {
       const movieList = response.Search;
+      console.log(movieList);
       movieMarathonApp.displayMovie(movieList);
     })
     .catch((err) => {
@@ -122,6 +124,13 @@ movieMarathonApp.displayMovie = (apiResponse) => {
 movieMarathonApp.toggleList = (res, year, id) => {
   const plusButtonElement = document.getElementById(`addButton${id}`);
   plusButtonElement.addEventListener("click", function () {
+    const movieExportButton = document.querySelector(".export")
+    const listPlaceholderText = document.querySelector(".list-placeholder")
+    if (!movieExportButton.style.display){
+      movieExportButton.style.display = "initial";
+      listPlaceholderText.style.display = "none";
+    }
+
     movieMarathonApp.movieListulElement = document.querySelector(".movie-list ul");
     const movieListliElement = document.createElement("li");
     movieListliElement.setAttribute("id", id);
@@ -211,8 +220,8 @@ movieMarathonApp.showListAndResults = () => {
 
 // string length check method
 movieMarathonApp.lengthCheck = (string) => {
-  if (string.length > 16) {
-    return string.substring(0, 15) + "...";
+  if (string.length > 14) {
+    return string.substring(0, 13) + "...";
   } else {
     return string;
   }
@@ -333,7 +342,7 @@ movieMarathonApp.events = () => {
     movieMarathonApp.searchFieldElement = movieMarathonApp.searchBarElement.querySelector(".search");
 
     movieMarathonApp.userMovie = movieMarathonApp.searchFieldElement.value;
-    document.querySelector(`.results h2`).innerHTML = `Results for '${movieMarathonApp.userMovie}'`;
+    document.querySelector(`.results h2`).innerHTML = `Movie results for '${movieMarathonApp.userMovie}'`;
     movieMarathonApp.searchMovie(movieMarathonApp.userMovie);
     movieMarathonApp.searchFieldElement.value = "";
   })
@@ -370,7 +379,7 @@ movieMarathonApp.init = () => {
   movieMarathonApp.curtain();
 
   const defaultSearch = movieMarathonApp.random(movieMarathonApp.defaultMovies);
-  document.querySelector(`.results h2`).innerHTML = `Start with a '${defaultSearch}' movie and go from there`;
+  document.querySelector(`.results h2`).innerHTML = `Start with a '${defaultSearch}' movie`;
   movieMarathonApp.searchMovie(defaultSearch);
   
   movieMarathonApp.events();
