@@ -257,9 +257,7 @@ main {
     }
 
     .main-container {
-        // display: flex;
         flex-wrap: wrap;
-        // justify-content: space-around;
         @include flexjustifyAlign(space-around);
 
         h2 {
@@ -278,9 +276,7 @@ main {
                 list-style: none;
                 padding-left: 5%;
                 padding-right: 5%;
-                // display: flex;
                 margin: 0;
-                // justify-content: center;
                 @include flexjustifyAlign(center);
 
                 li {
@@ -360,8 +356,6 @@ main {
 
                 .movie-list-icons {
                     @include flexjustifyAlign(initial, center);
-                        // display: flex;
-                        // align-items: center;
                 }
 
                 .movie-list-item {
@@ -378,8 +372,6 @@ main {
                         font-size: 20px;
                         padding: 0 5px 5px 5px;
                         @include flexjustifyAlign(space-between);
-                        // display: flex;
-                        // justify-content: space-between;
             
                         .movie-list-item {
                             display: flex;
@@ -520,8 +512,6 @@ footer {
                 background-color: #000;
                 list-style: none;
                 @include flexjustifyAlign(space-evenly);
-                // display: flex;
-                // justify-content: space-evenly;
                 padding: 0;
 
                 li {
