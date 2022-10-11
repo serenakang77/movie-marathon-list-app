@@ -7,6 +7,7 @@ movieMarathonApp.options = {
     "X-RapidAPI-Host": "movie-database-alternative.p.rapidapi.com",
   },
 }
+
 // scope our data and methods to movieMarathon app object
 movieMarathonApp.url = "https://movie-database-alternative.p.rapidapi.com/"
 
@@ -28,7 +29,6 @@ movieMarathonApp.searchMovie = (userInput) => {
     })
     .then((response) => {
       const movieList = response.Search
-      console.log(movieList)
       movieMarathonApp.displayMovie(movieList)
     })
     .catch((err) => {
