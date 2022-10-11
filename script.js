@@ -32,7 +32,7 @@ movieMarathonApp.searchMovie = (userInput) => {
       movieMarathonApp.displayMovie(movieList)
     })
     .catch((err) => {
-      if (err.message === "movieList is undefined") {
+      if (err.message === "apiResponse is undefined") {
         alert(
           "There are no results available, please search different keywords!"
         )
