@@ -1,4 +1,5 @@
-@mixin flexjustifyAlign($type, $value: initial){
+// flexbox mixin
+@mixin flex-justify-align($type, $value: initial){
     display: flex;
     justify-content: $type;
     align-items: $value;

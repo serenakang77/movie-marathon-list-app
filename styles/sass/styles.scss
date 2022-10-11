@@ -2,8 +2,7 @@
 @use 'partials/variables' as *;
 @use "partials/mixin" as *;
 
-// global styles
-
+// display certain elements only on mobile or desktop
 .mobile-only {
     display: none;
 }
@@ -11,6 +10,7 @@
     display: initial;
 }
 
+// global styles
 body {
     background-color: $cyan;
     text-align: center;
@@ -34,9 +34,8 @@ body {
     height: 100%;
     position: static;
 }
-
-.curtainleft,
-.curtainright {
+.curtain-left,
+.curtain-right {
     position: absolute;
     top: 0;
     width: 13%;
@@ -47,18 +46,16 @@ body {
     background-position: center center;
     cursor: pointer;
 }
-
-.curtainleft {
+.curtain-left {
     background-image: url("../assets/left-curtain.png");
 }
-
-.curtainright {
+.curtain-right {
     background-image: url("../assets/right-curt.png");
     right: 0;
 }
 
 // heart styling
-.heartAnimation {
+.heart-animation {
     background-image: url('../assets/web-heart-animation.png');
     background-repeat: no-repeat;
     background-size: 2900%;
@@ -67,11 +64,9 @@ body {
     margin: 0 auto;
     cursor: pointer;
 }
-
 .animate {
     animation: heart-burst 1s steps(28) forwards;
 }
-
 @keyframes heart-burst {
     0% {
         background-position: left;
@@ -90,7 +85,6 @@ body {
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-
     .popup-container {
         position: fixed;
         top: 50%;
@@ -101,33 +95,28 @@ body {
         max-width: 80%;
         max-height: 80%;
         background: $off-white;
-        border: solid #000 2px;
+        border: $border;
         border-radius: 25px;
-
         .popup-top {
             position: sticky;
             background-color: $cyan;
-            border-bottom: solid #000 2px;
+            border-bottom: $border;
             top: 0;
             padding: 10px;
-
             i {
-                color: #000;
+                color: $black;
                 font-size: 30px;
                 float: left;
                 cursor: pointer;
-
                 &:hover {
                     color: $off-white;
                 }
             }
-
             h3 {
                 padding: 5px 0px;
                 margin: 0;
             }
         }
-
         .final-list-info {
             padding: 20px;
             margin: auto;
@@ -136,25 +125,21 @@ body {
                 text-align: left;
                 font-size: 20px;
                 li {
-                        margin: 0;
-                        padding-bottom: 10px;
-                
-                        &:last-child {
-                            padding-bottom: 0px;
-                        }
+                    margin: 0;
+                    padding-bottom: 10px;
+                    &:last-child {
+                        padding-bottom: 0px;
                     }
+                }
             }
         }
-
         .popup-info {
-            @include flexjustifyAlign(initial, center);
+            @include flex-justify-align(initial, center);
             padding: 20px;
-
             ul {
                 list-style: none;
                 text-align: left;
                 padding-left: 20px;
-
                 li {
                     margin: 0;
                     padding-bottom: 10px;
@@ -163,12 +148,11 @@ body {
                     }
                 }
             }
-
             img {
                 width: 200px;
                 height: auto;
                 object-fit: cover;
-                border: solid #000 2px;
+                border: $border;
             }
         }
     }
@@ -177,59 +161,52 @@ body {
 // header styles
 header {
     padding-top: 25px;
-
     .wrapper {
         width: 500px;
         background-color: $off-white;
-        border: solid #000 2px;
+        border: $border;
         border-radius: 25px;
         padding-top: 5px;
         padding-bottom: 5px;
     }
-
     h1 {
         font-size: 50px;
     }
-
     .mobile-nav {
         display: none;
     }
 }
 
 // main styles
-
 main {
     .search-bar {
         margin: auto;
         padding: 20px;
         width: 500px;
-
         form {
             border: none;
-            @include flexjustifyAlign(space-between);
+            @include flex-justify-align(space-between);
             flex-direction: row;
             input {
                 width: 70%;
                 padding: 10px;
-                border: solid #000 2px;
+                border: $border;
                 border-radius: 5px;
             }
-
             button {
                 padding: 10px;
-                border: solid #000 2px;
+                border: $border;
                 background-color: $off-white;
-                color: #000;
+                color: $black;
                 border-radius: 5px;
                 width: 25%;
                 &:hover {
-                        cursor: pointer;
-                        background-color: rgba($off-white, .75);
-                    }
+                    cursor: pointer;
+                    background-color: rgba($off-white, .75);
+                }
             }
         }
     }
-
     .instructions {
         background-color: $off-white;
         margin: auto;
@@ -237,99 +214,84 @@ main {
         padding: 15px;
         width: 75%;
         border-radius: 25px;
-        border: solid #000 2px;
+        border: $border;
         h2, p {
             margin: 0;
             padding: 10px;
         }
         i {
-            color: #000;
+            color: $black;
             font-size: 30px;
             float: left;
             cursor: pointer;
-
             &:hover {
                 color: $cyan;
             }
         }
     }
-
     .main-container {
         flex-wrap: wrap;
-        @include flexjustifyAlign(space-around);
-
+        @include flex-justify-align(space-around);
         h2 {
             font-size: 25px;
             margin: 25px;
             }
-
         .results {
             background-color: $off-white;
             width: 60%;
             max-height: 457px;
             border-radius: 25px;
-            border: solid #000 2px;
-
+            border: $border;
             ul {
                 list-style: none;
                 padding-left: 5%;
                 padding-right: 5%;
                 margin: 0;
-                @include flexjustifyAlign(center);
-
+                @include flex-justify-align(center);
                 li {
                     margin: 0% 5% 5% 5%;
                     width: 23%;
-
                     .poster-container {
                         position: relative;
-
                         .movie-poster,
                         .add-button {
                             width: 100%;
                             height: auto;
                             aspect-ratio: 2.75/4;
                         }
-
                         .movie-poster {
                             object-fit: cover;
-                            border: solid #000 2px;
+                            border: $border;
                         }
-
                         .add-button {
                             display: none;
                             position: absolute;
                             left: 0;
                             top: 0;
-
                             p {
                                 padding-top: 30%;
                                 font-size: 15px;
                             }
-
                             i {
-                                color: #000;
+                                color: $black;
                                 font-size: 50px;
                             }
                         }
-
                         &:hover {
                             .movie-poster {
                                 opacity: 30%;
                             }
-
                             .add-button {
                                 display: block;
                                 cursor: pointer;
                             }
                         }
                     }
-
                     .read-more {
-                        border: solid #000 2px;
+                        border: $border;
                         border-radius: 5px;
                         background-color: $cyan;
-                        color: #000;
+                        color: $black;
                         width: 100%;
                         padding: 5px;
                         &:hover {
@@ -340,59 +302,47 @@ main {
                 }
             }
         }
-
         .movie-list {
             background-color: $off-white;
             width: 30%;
             max-height: 457px;
             border-radius: 25px;
-            border: solid #000 2px;
-
+            border: $border;
             .list-container {
                 max-height: 65%;
                 overflow-y: auto;
-
                 .movie-list-icons {
-                    @include flexjustifyAlign(initial, center);
+                    @include flex-justify-align(initial, center);
                 }
-
                 .movie-list-item {
                     align-items: center;
                 }
-
                 ul {
                     list-style-type: none;
                     text-align: left;
                     padding-left: 5%;
                     margin: 0;
-            
                     li {
                         font-size: 20px;
                         padding: 0 5px 5px 5px;
-                        @include flexjustifyAlign(space-between);
-            
+                        @include flex-justify-align(space-between);
                         .movie-list-item {
                             display: flex;
-            
                             input {
                                 margin-right: 10px;
                             }
-            
                             label {
                                 margin: 0;
                             }
-            
                             input:checked+label {
                                 text-decoration: line-through;
                             }
                         }
-            
                         i {
-                            color: #000;
+                            color: $black;
                             padding-left: 5px;
                             cursor: pointer;
                             align-self: center;
-            
                             &:hover {
                                 color: $cyan;
                             }
@@ -407,15 +357,14 @@ main {
             }
             .export {
                 display: none;
-                border: solid #000 2px;
+                border: $border;
                 border-radius: 5px;
                 background-color: $cyan;
-                color: #000;
+                color: $black;
                 width: 75%;
                 padding: 5px;
                 margin-top: 5%;
                 margin-bottom: 5%;
-
                 &:hover {
                     cursor: pointer;
                     background-color: rgba($cyan, .75);
@@ -426,7 +375,6 @@ main {
 }
 
 // footer styles
-
 footer {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -434,60 +382,55 @@ footer {
 
 // responsive design styles
 
+// screens smaller than 1600px
 @media only screen and (max-width: 1600px) {
     .curtain {
         display: none;
     }
 }
 
+// screens smaller than 1024px
 @media only screen and (max-width: 1024px) {
-
-        main {
-            .instructions {
+    main {
+        .instructions {
+            width: 100%;
+        }
+        .main-container {
+            flex-direction: column;
+            .results,
+            .movie-list {
                 width: 100%;
+                max-height: 100%;
             }
-    
-            .main-container {
-                flex-direction: column;
-    
-                .results,
-                .movie-list {
-                    width: 100%;
-                    max-height: 100%;
-                }
-    
-                .results {
-                    ul {
-                        li {
-                            p {
-                                font-size: 20px;
-                            }
+            .results {
+                ul {
+                    li {
+                        p {
+                            font-size: 20px;
                         }
                     }
-                    margin-bottom: 30px;
                 }
+                margin-bottom: 30px;
             }
         }
+    }
 }
 
+// screens smaller than 768px
 @media only screen and (max-width: 768px) {
     .mobile-only {
-            display: initial;
-        }
-    
+        display: initial;
+    }
     .desktop-only {
         display: none;
     }
-
     .popup {
         .popup-container {
             .popup-info, .final-list-info {
                 flex-direction: column;
-
                 ul {
                     padding: 0;
                 }
-
                 img {
                     display: none;
                 }
@@ -498,27 +441,23 @@ footer {
             }
         }
     }
-
     header {
         .wrapper {
             width: 90%;
         }
         .mobile-nav {
             display: initial;
-
             ul {
-                background-color: #000;
+                background-color: $black;
                 list-style: none;
-                @include flexjustifyAlign(space-evenly);
+                @include flex-justify-align(space-evenly);
                 padding: 0;
-
                 li {
                     color: $off-white;
                     padding: 10px;
-
                     &:hover {
                         background-color: $cyan;
-                        color: #000;
+                        color: $black;
                         cursor: pointer;
                     }
                 }
@@ -551,7 +490,6 @@ footer {
                                     padding-top: 40%;
                                     font-size: 30px
                                 }
-
                                 i {
                                     font-size: 75px;
                                 }

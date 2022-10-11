@@ -1,4 +1,4 @@
-// Create movieMarathonApp object
+// movieMarathonApp object
 const movieMarathonApp = {}
 movieMarathonApp.options = {
   method: "GET",
@@ -8,10 +8,10 @@ movieMarathonApp.options = {
   },
 }
 
-// scope our data and methods to movieMarathon app object
+// api base url
 movieMarathonApp.url = "https://movie-database-alternative.p.rapidapi.com/"
 
-// Create searchMovie method that makes an API call to the Movie Database for 3 movies from the results
+// searchMovie method that makes an API call to the Movie Database for 3 movies from the results
 movieMarathonApp.searchMovie = (userInput) => {
   const movieMarathonAppUrl = new URL(movieMarathonApp.url)
   movieMarathonAppUrl.search = new URLSearchParams({
@@ -44,7 +44,7 @@ movieMarathonApp.searchMovie = (userInput) => {
     })
 }
 
-// Create getMovie method that takes the id of the movies that user searched and makes an API call for that movie's information (by feeding in the ID), and creates an object with that information
+// getMovie method that takes the ID of the movies that user searched and makes an API call for that movie's information (by feeding in the ID), creating an object with that information
 movieMarathonApp.getMovie = (movie) => {
   if (movie) {
     const movieMarathonAppUrlById = new URL(movieMarathonApp.url)
@@ -70,7 +70,7 @@ movieMarathonApp.options1 = {
 movieMarathonApp.searchBarSubmitButton =
   document.querySelector(".search-button")
 
-// Create appendMovieInformation method that adds the li element and append it to ul element
+// appendMovieInformation method that adds the li element and appends it to ul element
 movieMarathonApp.appendMovieInformation = (apiResponse) => {
   const liElement = document.createElement("li")
   const movieTitle = apiResponse.Title
@@ -102,7 +102,7 @@ movieMarathonApp.appendMovieInformation = (apiResponse) => {
   })
 }
 
-// Create displayMovies method that manipulates the DOM to add movie images and information
+// displayMovies method that manipulates the DOM to add movie images and information
 movieMarathonApp.displayMovie = (apiResponse) => {
   movieMarathonApp.ulElement = document.querySelector(".results ul")
   movieMarathonApp.ulElement.innerHTML = ""
@@ -142,7 +142,7 @@ movieMarathonApp.displayMovie = (apiResponse) => {
   }
 }
 
-// Create toggleList method that adds and removes movie titles to the list when the user clicks + or -
+// toggleList method that adds and removes movie titles to the list when the user clicks + or -
 movieMarathonApp.toggleList = (res, year, id) => {
   const plusButtonElement = document.getElementById(`addButton${id}`)
   plusButtonElement.addEventListener("click", function () {
@@ -170,7 +170,7 @@ movieMarathonApp.toggleList = (res, year, id) => {
             <span class="movie-list-item"><input type="checkbox" id="check${id}"><label for="check${res}">${res} (${year})</label></span>
             <div class="movie-list-icons">
             <i class="fa fa-minus-circle" aria-hidden="true" id="removeButton${id}"></i>
-            <div class="heartAnimation" id="heart${id}"></div>
+            <div class="heart-animation" id="heart${id}"></div>
             </div>
             `
       movieMarathonApp.movieListulElement.append(movieListliElement)
@@ -198,7 +198,7 @@ movieMarathonApp.toggleList = (res, year, id) => {
   })
 }
 
-// show heart animation when they click, and move to top list
+// show heart animation when user clicks, and move item to top of list
 movieMarathonApp.heartAnimation = function (id) {
   const heartElement = document.getElementById(`heart${id}`)
   heartElement.addEventListener("click", function () {
@@ -223,23 +223,23 @@ movieMarathonApp.heartAnimation = function (id) {
 movieMarathonApp.list = document.querySelector(`.movie-list`)
 movieMarathonApp.results = document.querySelector(`.results`)
 
-// list and results button properties
+// list and results mobile nav button properties
 movieMarathonApp.resultsBtn = document.querySelector(`.results-btn`)
 movieMarathonApp.listBtn = document.querySelector(`.list-btn`)
 
-// show results and hide lists method
+// method to show results and hide lists
 movieMarathonApp.showResults = () => {
   movieMarathonApp.results.style.display = `block`
   movieMarathonApp.list.style.display = `none`
 }
 
-// show list and hide results method
+// method to show list and hide results
 movieMarathonApp.showList = () => {
   movieMarathonApp.list.style.display = `block`
   movieMarathonApp.results.style.display = `none`
 }
 
-// show both list and results method
+// method to show both list and results
 movieMarathonApp.showListAndResults = () => {
   movieMarathonApp.results.style.display = `block`
   movieMarathonApp.list.style.display = `block`
@@ -254,20 +254,20 @@ movieMarathonApp.lengthCheck = (string) => {
   }
 }
 
-// Generate curtain effect
+// click curtain to hide effect
 movieMarathonApp.curtain = function () {
   const curtainElement = document.getElementById("curtain")
-  const curtainleft = document.querySelector(".curtainleft")
-  const curtainright = document.querySelector(".curtainright")
+  const curtainLeft = document.querySelector(".curtain-left")
+  const curtainRight = document.querySelector(".curtain-right")
   curtainElement.addEventListener("click", function () {
-    curtainleft.style.transform = "translateX(-100%)"
-    curtainright.style.transform = "translateX(100%)"
-    curtainleft.style.transition = "all 2s ease-out"
-    curtainright.style.transition = "all 2s ease-out"
+    curtainLeft.style.transform = "translateX(-100%)"
+    curtainRight.style.transform = "translateX(100%)"
+    curtainLeft.style.transition = "all 2s ease-out"
+    curtainRight.style.transition = "all 2s ease-out"
   })
 }
 
-// Generate popup effect
+// read more popup effect
 movieMarathonApp.popUpModal = (data) => {
   const popUpModal = document.querySelector(`.popup`)
   popUpModal.innerHTML = `
@@ -297,6 +297,7 @@ movieMarathonApp.popUpModal = (data) => {
   })
 }
 
+// final list pop up effect
 movieMarathonApp.finalListPopUp = () => {
   movieMarathonApp.finalList = document.querySelectorAll(
     `.list-container ul li label`
@@ -330,12 +331,7 @@ movieMarathonApp.finalListPopUp = () => {
   })
 }
 
-// Show random movies at first
-movieMarathonApp.random = (array) => {
-  const index = Math.floor(Math.random() * array.length)
-  return array[index]
-}
-
+// default movie array
 movieMarathonApp.defaultMovies = [
   `Avengers`,
   `Fast and Furious`,
@@ -360,13 +356,19 @@ movieMarathonApp.defaultMovies = [
   `Captain America`,
 ]
 
+// method for randomizing default movie
+movieMarathonApp.random = (array) => {
+  const index = Math.floor(Math.random() * array.length)
+  return array[index]
+}
+
 movieMarathonApp.events = () => {
-  // Make an onSubmit event listener on searchBarElement
+
+  // search bar submit value event listener
   movieMarathonApp.searchBarSubmitButton.addEventListener("click", (event) => {
     event.preventDefault()
 
     movieMarathonApp.searchBarElement = document.querySelector(".search-bar")
-    // Set searchBarElement variable to get the userQuery
     movieMarathonApp.searchFieldElement =
       movieMarathonApp.searchBarElement.querySelector(".search")
 
@@ -378,26 +380,23 @@ movieMarathonApp.events = () => {
     movieMarathonApp.searchFieldElement.value = ""
   })
 
-  // close instructions box
+  // instructions box variables
   movieMarathonApp.instructionsBox = document.querySelector(`.instructions`)
-  movieMarathonApp.instructionsX =
-    movieMarathonApp.instructionsBox.querySelector(`i`)
+  movieMarathonApp.instructionsX = movieMarathonApp.instructionsBox.querySelector(`i`)
+
+  // close instructions box event listener
   movieMarathonApp.instructionsX.addEventListener(`click`, function () {
     movieMarathonApp.instructionsBox.style.display = `none`
   })
 
-  // on export list button click
+  // export list variable
   movieMarathonApp.exportButton = document.querySelector(`.export`)
-  movieMarathonApp.exportButton.addEventListener(
-    `click`,
-    movieMarathonApp.finalListPopUp
-  )
+
+  // export list button to list pop up event listener
+  movieMarathonApp.exportButton.addEventListener(`click`, movieMarathonApp.finalListPopUp)
 
   // on results button click, show results
-  movieMarathonApp.resultsBtn.addEventListener(
-    `click`,
-    movieMarathonApp.showResults
-  )
+  movieMarathonApp.resultsBtn.addEventListener(`click`, movieMarathonApp.showResults)
 
   // on list button click, show list
   movieMarathonApp.listBtn.addEventListener(`click`, movieMarathonApp.showList)
@@ -412,7 +411,7 @@ movieMarathonApp.events = () => {
   })
 }
 
-// Create init method on movieMarathonApp
+// initialization method
 movieMarathonApp.init = () => {
   movieMarathonApp.curtain()
 
@@ -425,5 +424,5 @@ movieMarathonApp.init = () => {
   movieMarathonApp.events()
 }
 
-// Call movieMarathonApp.init
+// initialize app
 movieMarathonApp.init()

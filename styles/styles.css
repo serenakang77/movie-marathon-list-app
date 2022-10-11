@@ -260,8 +260,8 @@ body {
   position: static;
 }
 
-.curtainleft,
-.curtainright {
+.curtain-left,
+.curtain-right {
   position: absolute;
   top: 0;
   width: 13%;
@@ -273,16 +273,16 @@ body {
   cursor: pointer;
 }
 
-.curtainleft {
+.curtain-left {
   background-image: url("../assets/left-curtain.png");
 }
 
-.curtainright {
+.curtain-right {
   background-image: url("../assets/right-curt.png");
   right: 0;
 }
 
-.heartAnimation {
+.heart-animation {
   background-image: url("../assets/web-heart-animation.png");
   background-repeat: no-repeat;
   background-size: 2900%;
@@ -332,19 +332,19 @@ body {
   max-width: 80%;
   max-height: 80%;
   background: #FAF9F6;
-  border: solid #000 2px;
+  border: solid #000000 2px;
   border-radius: 25px;
 }
 .popup .popup-container .popup-top {
   position: -webkit-sticky;
   position: sticky;
   background-color: #87bec0;
-  border-bottom: solid #000 2px;
+  border-bottom: solid #000000 2px;
   top: 0;
   padding: 10px;
 }
 .popup .popup-container .popup-top i {
-  color: #000;
+  color: #000000;
   font-size: 30px;
   float: left;
   cursor: pointer;
@@ -395,7 +395,7 @@ body {
   height: auto;
   -o-object-fit: cover;
      object-fit: cover;
-  border: solid #000 2px;
+  border: solid #000000 2px;
 }
 
 header {
@@ -404,7 +404,7 @@ header {
 header .wrapper {
   width: 500px;
   background-color: #FAF9F6;
-  border: solid #000 2px;
+  border: solid #000000 2px;
   border-radius: 25px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -431,14 +431,14 @@ main .search-bar form {
 main .search-bar form input {
   width: 70%;
   padding: 10px;
-  border: solid #000 2px;
+  border: solid #000000 2px;
   border-radius: 5px;
 }
 main .search-bar form button {
   padding: 10px;
-  border: solid #000 2px;
+  border: solid #000000 2px;
   background-color: #FAF9F6;
-  color: #000;
+  color: #000000;
   border-radius: 5px;
   width: 25%;
 }
@@ -453,14 +453,14 @@ main .instructions {
   padding: 15px;
   width: 75%;
   border-radius: 25px;
-  border: solid #000 2px;
+  border: solid #000000 2px;
 }
 main .instructions h2, main .instructions p {
   margin: 0;
   padding: 10px;
 }
 main .instructions i {
-  color: #000;
+  color: #000000;
   font-size: 30px;
   float: left;
   cursor: pointer;
@@ -483,7 +483,7 @@ main .main-container .results {
   width: 60%;
   max-height: 457px;
   border-radius: 25px;
-  border: solid #000 2px;
+  border: solid #000000 2px;
 }
 main .main-container .results ul {
   list-style: none;
@@ -510,7 +510,7 @@ main .main-container .results ul li .poster-container .add-button {
 main .main-container .results ul li .poster-container .movie-poster {
   -o-object-fit: cover;
      object-fit: cover;
-  border: solid #000 2px;
+  border: solid #000000 2px;
 }
 main .main-container .results ul li .poster-container .add-button {
   display: none;
@@ -523,7 +523,7 @@ main .main-container .results ul li .poster-container .add-button p {
   font-size: 15px;
 }
 main .main-container .results ul li .poster-container .add-button i {
-  color: #000;
+  color: #000000;
   font-size: 50px;
 }
 main .main-container .results ul li .poster-container:hover .movie-poster {
@@ -534,10 +534,10 @@ main .main-container .results ul li .poster-container:hover .add-button {
   cursor: pointer;
 }
 main .main-container .results ul li .read-more {
-  border: solid #000 2px;
+  border: solid #000000 2px;
   border-radius: 5px;
   background-color: #87bec0;
-  color: #000;
+  color: #000000;
   width: 100%;
   padding: 5px;
 }
@@ -550,7 +550,7 @@ main .main-container .movie-list {
   width: 30%;
   max-height: 457px;
   border-radius: 25px;
-  border: solid #000 2px;
+  border: solid #000000 2px;
 }
 main .main-container .movie-list .list-container {
   max-height: 65%;
@@ -590,7 +590,7 @@ main .main-container .movie-list .list-container ul li .movie-list-item input:ch
   text-decoration: line-through;
 }
 main .main-container .movie-list .list-container ul li i {
-  color: #000;
+  color: #000000;
   padding-left: 5px;
   cursor: pointer;
   align-self: center;
@@ -605,10 +605,10 @@ main .main-container .movie-list .list-placeholder {
 }
 main .main-container .movie-list .export {
   display: none;
-  border: solid #000 2px;
+  border: solid #000000 2px;
   border-radius: 5px;
   background-color: #87bec0;
-  color: #000;
+  color: #000000;
   width: 75%;
   padding: 5px;
   margin-top: 5%;
@@ -675,7 +675,7 @@ main .main-container .movie-list {
     display: initial;
   }
   header .mobile-nav ul {
-    background-color: #000;
+    background-color: #000000;
     list-style: none;
     display: flex;
     justify-content: space-evenly;
@@ -688,7 +688,7 @@ main .main-container .movie-list {
   }
   header .mobile-nav ul li:hover {
     background-color: #87bec0;
-    color: #000;
+    color: #000000;
     cursor: pointer;
   }
   main .search-bar {
